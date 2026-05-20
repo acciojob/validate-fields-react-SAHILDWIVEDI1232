@@ -1,26 +1,50 @@
 import React from "react";
 function LoginForm(){
-  const [input,setInput]=useState("Enter Text")
-return(
-  <form>
-  <div id="errorMessage" 
-  style={{backgroundColor:"red",text:"white"}}></div>
-  <div id="username"
-  <input
-  type="text"
-    value={input}
-        onChange={(e) => setInput(e.target.value)}>
-          </div>
-            <div id="password"
-  <input
-  type="text"
-    value={input}
-        onChange={(e) => setInput(e.target.value)}>
-          </div>
+const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+ const handleSubmit = (e) => {
+    e.preventDefault();
 
-          if(id==="errorMessage"){
-            console.log("errrorMessage")
-  </form>
-)
+    if (username === "" || password === "") {
+      setErrorMessage("Username and Password are required");
+    } else {
+      setErrorMessage("");
+      console.log("Login Success");
+    }
+  };
+return (
+    <form onSubmit={handleSubmit}>
+      <div
+        id="errorMessage"
+        style={{ color: "red", marginBottom: "10px" }}
+      >
+        {errorMessage}
+      </div>
+
+      <input
+        id="username"
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
+      <br />
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <br />
+
+      <button type="submit">Login</button>
+    </form>
+  );
 }
-export default LoginFrom;
+
+export default LoginForm;
